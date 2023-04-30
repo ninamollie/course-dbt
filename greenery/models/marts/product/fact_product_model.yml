@@ -8,6 +8,6 @@ models:
         tests:
           - unique
           - not_null
-      - name: total_page_views
-      - name: total_add_to_carts
-      - name: total_orders
+      - name: page_views
+      - name: add_to_carts
+      - name: total_daily_orders
