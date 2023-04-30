@@ -51,7 +51,7 @@ I added non_null and unique tests to ensure data quality
 
 #### Did you find any “bad” data as you added and ran tests on your models? How did you go about either cleaning the data in the dbt model or adjusting your assumptions/tests?
 
-Yes 4 errors
+No
 
 ##### Which products had their inventory change from week 1 to week 2? 
 
