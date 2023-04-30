@@ -1,18 +1,25 @@
-{{
-  config(
-    materialized='table'
-  )
+{{ 
+    config(
+        materialized='table'
+) 
 }}
 
-SELECT
-cast(se.created_at as date) as date,
-se.product_id,
-sp.name as product_name,
-count(distinct case when event_type = 'page_view' then event_id else null end) as page_views,
-count(distinct session_id) as sessions,
-count(distinct case when event_type = 'add_to_cart' then event_id else null end) as add_to_carts,
-count(distinct case when event_type = 'package_shipped' then event_id else null end) as packages_shipped,
-count(distinct case when event_type = 'checkout' then event_id else null end) as checkouts
-FROM {{ ref('stg_events') }} se
-left join {{ ref('stg_products') }} sp on sp.product_id = se.product_id
-group by 1,2,3
+WITH product_events AS (
+   SELECT * FROM {{ ref('int_product_events') }}
+), 
+
+
+orders_products AS (
+    SELECT * FROM {{ ref('int_orders_product') }}
+)
+
+SELECT 
+product_events.product_id
+, product_events.created_day
+, product_events.page_view
+, product_events.add_to_cart
+, orders_products.total_daily_orders
+FROM product_events
+LEFT JOIN orders_products 
+    ON product_events.product_id = orders_products.product_id 
+    AND product_events.created_day = orders_products.created_day

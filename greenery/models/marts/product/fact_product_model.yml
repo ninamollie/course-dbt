@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: fact_product
+    description: 'fact table with daily events per product'
+    columns:
+      - name: product_id 
+        tests:
+          - unique
+          - not_null
+      - name: total_page_views
+        tests:
+          - positive_values
+      - name: total_add_to_carts
+      - name: total_orders

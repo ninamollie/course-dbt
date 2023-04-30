@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: int_product_events
+    description: "daily events per product"
+  
+  - name: int_orders_product
+    decription: "daily orders per product." 
