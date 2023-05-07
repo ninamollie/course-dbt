@@ -5,7 +5,7 @@
 }}
 
 SELECT 
-    order_id,
+    order_id AS order_order_id,
     promo_id,
     user_id,
     address_id,

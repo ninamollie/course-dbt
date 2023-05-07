@@ -11,6 +11,6 @@ SELECT
     event_type,
     page_url,
     created_at,
-    order_id,
-    product_id
+    order_id AS events_order_id,
+    product_id AS events_product_id
 FROM {{ source('postgres', 'events') }}
